@@ -1,91 +1,91 @@
-// - Contract Imports 
-import { useDContracts } from "../contracts/contracts";
-
 // - Web3 Imports 
 import { ethers } from "ethers";
-import { Bytes } from "@ethersproject/bytes";
+import React from "react";
 
-
-// - Type Imports 
-import { Maybe, GetProposal, Vote, NewProposal } from '../utils/types';
-
+// - Contract Imports 
+import { useDContracts } from "../contracts/contracts";
+import { Maybe, NewProposal, Vote } from "../utils/types";
 
 export function UseDcore () {
+	const Web3 = require("web3");
 
-    const DCore = useDContracts()?.DCore
+    const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8000"));
 
-    const _getProposal = async (
-        params: GetProposal,
-        _id: any
-        ): Promise<ethers.ContractTransaction> => {
-        let tx: any;
-        try {
-            tx = await DCore!.getProposal(params._id);
-        } catch (err: any) {
-            if (err.code === 4001) {
-                throw Error('Transaction rejected by your wallet');
-            } else {
-                throw Error('Failed to submit transaction.')
-            }
-        }
-        return tx;
-    }
+    const contracts = useDContracts();
+	console.log(contracts)
 
-    const _vote = async (
-        params: Vote,
-        _proposalID: any, 
-        _supportsProposal: boolean
-        ): Promise<ethers.ContractTransaction> => {
-         let tx: Maybe<ethers.ContractTransaction>;
-         try {
-             tx = await DCore!.vote(
-                 params._proposalId,
-                 params._supportsProposal
-             )
-         } catch (err: any) {
-            if (err.code === 4001) {
-                throw Error('Transaction rejected by your wallet');
-            } else {
-                throw Error('Failed to submit transaction.');
-            }
-         }
-         return tx;
-    }
-
-    const _newProposal = async(
-        params: NewProposal,
-        _target: string, 
-        _proposalHash: string, 
-        _calldata: Bytes
-        ): Promise<ethers.ContractTransaction> => {
-        let tx: Maybe<ethers.ContractTransaction>;
-          try {
-              tx = await DCore!.newProposal(
-                  params._target,
-                  params._proposalHash,
-                  params._callData,
-              )
-          } catch (e: any) {
+    //- Proposal Core Function Calls
+	const _newProposal = async (
+		_proposalHash: any, _callData: any, amount: any
+	) => {
+		console.log( 'prop hash:',_proposalHash,'call data:',_callData,amount.toLocaleString(), 'line 19 useDbank Hook')
+		
+		let tx: Maybe<ethers.ContractTransaction>;
+		try {
+			tx = await contracts?.DCore.newProposal(
+                '0xfb821d4BD0027E80282F6F16E7550F9Ee8D21645',
+                _proposalHash,
+                _callData,	
+				{value: ethers.BigNumber.from(amount.toLocaleString())}			
+			); 
+		} catch (e: any) {
 			console.error(e);
 			if (e.code === 4001) {
 				throw Error(`Transaction rejected by your wallet`);
-			} else {
+			}
 			throw Error(`Failed to submit transaction.`);
-            }
-        }
-        return tx;
-    }
+		}
 
-    /**
-     * proxyMintDD params
-     */
+		return tx;
+	};
 
-    /**
-     * proxyBurnDD
-     */
+    // const _newQuorum = async (
 
+	// ) => {
+	// 	console.log(params._quorum, 'line 39 useDbank Hook')
 
+	// 	let tx: Maybe<ethers.ContractTransaction>;
+	// 	try {
+	// 		tx = await contracts!.DCore.setQuorum(
+    //            		params._quorum
+	// 		);
+	// 	} catch (e: any) {
+	// 		console.error(e);
+	// 		if (e.code === 4001) {
+	// 			throw Error(`Transaction rejected by your wallet`);
+	// 		}
+	// 		throw Error(`Failed to submit transaction.`);
+	// 	}
 
+	// 	return tx;
+	// };
 
-    return { _newProposal, _vote, _getProposal }
+    // const _vote = async (
+	// 	params: Vote,
+	// ) => {
+	// 	console.log(params._proposalID, 'line 69 useDbank Hook')
+
+	// 	let tx: Maybe<ethers.ContractTransaction>;
+	// 	try {
+	// 		tx = await contracts!.DCore.vote(
+    //            		params._proposalID,  
+	// 				params._support
+	// 		);
+	// 	} catch (e: any) {
+	// 		console.error(e);
+	// 		if (e.code === 4001) {
+	// 			throw Error(`Transaction rejected by your wallet`);
+	// 		}
+	// 		throw Error(`Failed to submit transaction.`);
+	// 	}
+
+	// 	return tx;
+	// };
+
+    
+
+    // _newQuorum,_vote
+   
+  
+ return {_newProposal,}
 }

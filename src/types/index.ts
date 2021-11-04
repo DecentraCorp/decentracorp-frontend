@@ -3,12 +3,10 @@
 /* eslint-disable */
 export type { DecentraBank } from "./DecentraBank";
 export type { DecentraCore } from "./DecentraCore";
-export type { DecentraDollar } from "./DecentraDollar";
-export type { DecentraStock } from "./DecentraStock";
 export type { DScore } from "./DScore";
+export type { ERC20 } from "./ERC20";
 
 export { DecentraBank__factory } from "./factories/DecentraBank__factory";
 export { DecentraCore__factory } from "./factories/DecentraCore__factory";
-export { DecentraDollar__factory } from "./factories/DecentraDollar__factory";
-export { DecentraStock__factory } from "./factories/DecentraStock__factory";
 export { DScore__factory } from "./factories/DScore__factory";
+export { ERC20__factory } from "./factories/ERC20__factory";

@@ -15,10 +15,8 @@ import { chainIdToNetworkType, defaultNetworkId, NETWORK_TYPES } from './network
 // - Type Imports 
 import {DScore__factory} from '../../types/factories/DScore__factory';
 import { DScore } from "../../types/DScore";
-import {DecentraStock__factory} from '../../types/factories/DecentraStock__factory';
-import { DecentraStock } from "../../types/DecentraStock";
-import {DecentraDollar__factory} from '../../types/factories/DecentraDollar__factory';
-import { DecentraDollar } from "../../types/DecentraDollar";
+import { ERC20 } from "types/ERC20";
+import { ERC20__factory } from "types/factories/ERC20__factory";
 import {DecentraBank__factory} from '../../types/factories/DecentraBank__factory';
 import { DecentraBank } from "../../types/DecentraBank";
 import {DecentraCore__factory} from '../../types/factories/DecentraCore__factory';
@@ -38,8 +36,8 @@ export interface ContractAddresses {
 export interface Contracts {
   DCore: DecentraCore;
   DBank: DecentraBank;
-  DDollar: DecentraDollar;
-  DStock: DecentraStock;
+  DDollar: ERC20;
+  DStock: ERC20;
   Dscore: DScore;
 }
 
@@ -71,9 +69,9 @@ function useDContracts() : Contracts | null {
 		return {
 			DCore: DecentraCore__factory.connect(contracts.DCore, signer),
 			DBank: DecentraBank__factory.connect(contracts.DBank, signer),
-			DDollar: DecentraDollar__factory.connect(contracts.DDollar, signer),
+			DDollar: ERC20__factory.connect(contracts.DDollar, signer),
 			Dscore: DScore__factory.connect(contracts.Dscore, signer),
-			DStock: DecentraStock__factory.connect(contracts.DStock, signer),
+			DStock: ERC20__factory.connect(contracts.DStock, signer),
 		};
 	}, [active, library, chainId]);
 	return contract;

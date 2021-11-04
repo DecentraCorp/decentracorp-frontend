@@ -29,11 +29,9 @@ import {
   Span,
 } from './Style';
 import { FrntPageDesignPiece } from 'components/FrntPageDesignPiece/FrntPageDesignPiece';
-import { useLogin } from 'lib/ceramic/hooks';
 
 
 const FrontPage = () => {
-  const login = useLogin();
   return (
     <div>
       <Wrapper>
@@ -47,7 +45,7 @@ const FrontPage = () => {
               Corporation (DAC) where the <br/> CEO and Shareholders are the
               employees, managers and factory owners.
             </Text>
-            <RepoBtn onClick={() => void login()}><GHLogo src={GithubLogo} alt=''/><BtnText>Repo</BtnText></RepoBtn>
+            <RepoBtn><GHLogo src={GithubLogo} alt=''/><BtnText>Repo</BtnText></RepoBtn>
           </TextBox>
           <RightBox>
             <Gradient>

@@ -52,4 +52,20 @@ export const WalletBtn = styled.button`
     color: #2b3030;
     border: none;
     margin-right: 2em;
+    cursor: pointer;
+`;
+
+export const CloseBtn = styled.button`
+    background-color: #01ffa5;
+    /* border-radius: 6px; */
+    width: 250px;
+    height: 26px;
+    font-family: Spartan;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20.16px;
+    color: #2b3030;
+    border: none;
+    margin-top: 1em;
+    cursor: pointer;
 `;

@@ -1,0 +1,93 @@
+.Filters {
+	width: 352px;
+	background: var(--color-grey-darkest);
+	border: 1px solid var(--color-grey);
+	border-radius: var(--radius);
+	padding: 16px;
+	height: 40vh;
+	overflow: scroll;
+}
+
+@media screen and (max-width: 768px) {
+	.Filters {
+		width: 100%;
+		border: none;
+		padding: 0px;
+		padding-bottom: 48px;
+	}
+
+	.GroupHeader img {
+		padding-right: 4px
+	}
+}
+
+.Selected {
+	border-top: 1px solid var(--color-grey);
+}
+
+ul.Groups {
+	padding: 0 !important;
+}
+
+.Filters ul {
+	list-style: none;
+	padding: 16px 0;
+	margin: 0;
+}
+
+.Filters > ul {
+	width: 100%;
+}
+
+.Group {
+	border-top: 1px solid var(--color-grey);
+	list-style: none;
+	padding: 0;
+}
+
+.Group:last-child {
+	border-bottom: 1px solid var(--color-grey);
+}
+
+.GroupHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 16px 0;
+
+	border: transparent;
+	background: none;
+
+	text-align: left;
+	font-weight: 700;
+}
+
+.Filter {
+	width: 100%;
+	padding: 16px 0;
+
+	font-weight: 700;
+	text-align: left;
+	color: var(--text-primary);
+
+	background: none;
+
+	border: transparent;
+	border-bottom: 1px solid var(--color-grey);
+}
+
+/* Open Sections */
+
+.GroupHeader img {
+	transition: transform var(--animation-time-medium) ease-in-out;
+	transform: rotate(0deg) translateY(-50%);
+}
+
+.Open .GroupHeader img {
+	transform: rotate(-180deg) translateY(75%);
+}
+
+.Open .GroupHeader {
+	padding-bottom: 0;
+}

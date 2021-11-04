@@ -2,8 +2,8 @@ import { InjectedConnector as MetaMask } from '@web3-react/injected-connector';
 import { NetworkConnector as Network } from '@web3-react/network-connector';
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import { WalletLinkConnector } from '@web3-react/walletlink-connector';
-import { LedgerConnector } from '@web3-react/ledger-connector';
-import { TrezorConnector } from '@web3-react/trezor-connector';
+// import { LedgerConnector } from '@web3-react/ledger-connector';
+// import { TrezorConnector } from '@web3-react/trezor-connector';
 import { FrameConnector } from '@web3-react/frame-connector';
 import { AuthereumConnector } from '@web3-react/authereum-connector';
 import { FortmaticConnector } from '@web3-react/fortmatic-connector';
@@ -39,19 +39,19 @@ export const walletlink = new WalletLinkConnector({
   appName:'Dectracorp',
 });
 
-export const ledger = new LedgerConnector({
-  chainId: 1,
-  url: RPC_URLS[1],
-  pollingInterval: POLLING_INTERVAL,
-});
+// export const ledger = new LedgerConnector({
+//   chainId: 1,
+//   url: RPC_URLS[1],
+//   pollingInterval: POLLING_INTERVAL,
+// });
 
-export const trezor = new TrezorConnector({
-  chainId: 1,
-  url: RPC_URLS[1],
-  pollingInterval: POLLING_INTERVAL,
-  manifestEmail: 'dummy@abc.xyz',
-  manifestAppUrl: 'http://localhost:1234',
-});
+// export const trezor = new TrezorConnector({
+//   chainId: 1,
+//   url: RPC_URLS[1],
+//   pollingInterval: POLLING_INTERVAL,
+//   manifestEmail: 'dummy@abc.xyz',
+//   manifestAppUrl: 'http://localhost:1234',
+// });
 
 export const frame = new FrameConnector({ supportedChainIds: [1] });
 

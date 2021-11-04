@@ -1,0 +1,145 @@
+.Wrapper {
+	position: relative;
+	display: flex;
+	padding: 7.5px 9px;
+}
+
+/* Currency Selector */
+
+.Selected {
+	display: flex;
+	align-items: center;
+	padding: 0;
+	padding-right: 13px;
+	border: none;
+	border-right: 1px solid var(--color-grey);
+	background: none;
+	min-width: 100px;
+	flex: 1;
+}
+
+.Selected > *:not(:first-child) {
+	margin-left: 8px;
+}
+
+.Selected img:first-of-type {
+	width: 27px;
+	height: 27px;
+}
+
+.Selected span {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.Selected img:last-of-type {
+	width: 12px;
+	height: 12px;
+	transition: transform var(--animation-time-medium) ease-in-out;
+}
+
+.Open img:last-of-type {
+	transform: rotate(-180deg);
+}
+
+.Dropdown {
+	position: absolute;
+	top: calc(100% + 3px);
+	left: -1px;
+	width: 240px;
+	padding-bottom: 12px;
+
+	background: var(--color-grey-dark);
+	border: 1px solid var(--color-grey);
+	border-radius: var(--radius);
+
+	box-shadow: 0px 10px 20px 0px #00000066;
+	z-index: 10;
+}
+
+.Dropdown h5 {
+	font-size: 21px;
+	color: var(--text-primary);
+	margin-top: 16px;
+	margin-left: 16px;
+}
+
+.Currencies {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.Currency > button {
+	display: flex;
+	align-items: center;
+	margin-top: 4px;
+	padding: 4px 16px;
+	width: 100%;
+	border: none;
+	text-align: left;
+
+	background: none;
+}
+
+.Currency > button:hover {
+	background: var(--color-grey);
+}
+
+.Currency > button > img {
+	width: 27px;
+	height: 27px;
+}
+
+.Currency > button > div {
+	display: flex;
+	flex-direction: column;
+	margin-left: 14px;
+}
+
+.Currency > button > div > span:last-of-type {
+	font-size: 12px;
+	color: var(--text-secondary);
+}
+
+/* Input */
+
+.Wrapper form {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	cursor: text;
+}
+
+.Wrapper form button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: none;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	border: none;
+}
+
+.Submit img {
+	height: 20px;
+	width: 20px;
+}
+
+.Wrapper form input {
+	margin-left: 16px;
+}
+
+.Wrapper form input::webkit-outer-spin-button,
+.Wrapper form input::webkit-inner-spin-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+
+.Wrapper form input[type='number'] {
+	-moz-appearance: textfield;
+}
