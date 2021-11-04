@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import SwapLogo from '../../assets/switchLogo.svg';
 import SwitchSelector from 'react-switch-selector';
 import tokens from './tokens';
+import { ERC20 } from 'types/ERC20'
+import { UseDbank } from '../../lib/hooks/useDbank'
+import { useDContracts } from 'lib/contracts/contracts'
 import {
     DropdownContainer,
     SwitchContainer,
@@ -15,7 +18,10 @@ import {
     Span,
     Image,
 } from './Style';
+import { Web3Provider } from '@ethersproject/providers';
+import { useWeb3React } from '@web3-react/core';
 import { DropdownMenu } from 'components/DropdownMenu/DropdownMenu';
+import { ethers } from 'ethers';
 
 const switchOptions = [
     {
@@ -32,6 +38,20 @@ const switchOptions = [
 
 
 export const SwapForm = () => {
+    const [AmountToSell, setAmountToSell] = React.useState("")
+  const [balanceD, setBalanceD] = React.useState<number | undefined | any>()
+  const [balanceS, setBalanceS] = React.useState<number | undefined | any>()
+  const [calculatedPrice, setcalculatedPrice] = React.useState<any>()
+
+  const context = useWeb3React<Web3Provider>();
+	const { account, active } = useWeb3React();
+
+  // contracts
+  const dBank = UseDbank();
+  const contracts = useDContracts()!;
+  const Dstock: ERC20 = contracts.DStock;
+  const Ddollar: ERC20 = contracts.DDollar;
+
     const [fromValue, setFromValue] = useState<string>();
     const [toValue, setToValue] = useState<string>()
     const [currentFromCurrency, setCurrentFromCurrency] = useState<any>();
@@ -44,6 +64,32 @@ export const SwapForm = () => {
     ];
     
 
+    const handleSwap = async () => {
+        if(!active){
+          alert('please connect your wallet')
+        }else{
+         let tx = await dBank._purchaseStock({
+          _amount: ethers.utils.parseUnits(AmountToSell, 'ether'),
+          _tokenType: '0x0000000000000000000000000000000000000000'
+                
+            });
+    
+        return tx
+      }
+      } 
+
+      const handleSell = async () => {
+        if(!active){
+          alert('please connect your wallet')
+        }else{
+        const tx = await dBank._sellStock({
+          _amount: ethers.utils.parseUnits(AmountToSell)
+        })
+    
+        return tx
+      }
+      }
+
     const initialSelectedIndex = switchOptions.findIndex(({value}: any) => value === 'swap')
 
     const handleSwitchChange = (newValue: any) => {
@@ -51,7 +97,7 @@ export const SwapForm = () => {
     }
 
     const handleFromChange = (e: React.FormEvent<HTMLInputElement>) => {
-        setFromValue(e.currentTarget.value);
+        setAmountToSell(e.currentTarget.value);
     }
 
     const handleToChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -83,7 +129,7 @@ export const SwapForm = () => {
                     <Input placeholder='Value' onChange={(e: React.FormEvent<HTMLInputElement>) => handleToChange(e)} />
                 </DropdownBox>
                 <AltP>1 DCS = X DAI</AltP>
-                <SwapBtn>Swap</SwapBtn>
+                <SwapBtn onClick={handleSwap}>Swap</SwapBtn>
             </DropdownContainer>
         </Wrapper>
     )

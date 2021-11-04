@@ -1,0 +1,56 @@
+.Container {
+	position: relative;
+}
+
+.Container label {
+	display: block;
+	color: var(--text-secondary);
+	font-size: 14px;
+}
+
+.Header {
+	position: relative;
+	display: block;
+	padding-left: 0;
+	width: 100%;
+	margin-top: 3px;
+
+	text-align: left;
+	background: none;
+	font-size: 16px;
+
+	border: 1px solid transparent;
+	border-bottom: 1px solid var(--color-mint);
+
+	transition: border-bottom var(--animation-time-medium) ease-in-out;
+}
+
+.Header:hover {
+	border-bottom: 1px solid var(--color-primary) !important;
+}
+
+.Arrow {
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	transition: transform var(--animation-time-medium);
+}
+
+.Menu {
+	position: absolute;
+	top: calc(100% + 8px);
+
+	background: var(--color-grey-dark);
+	z-index: 1000;
+
+	overflow: hidden;
+}
+
+.Center {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.Right {
+	right: 0;
+}

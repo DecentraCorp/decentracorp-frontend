@@ -25,6 +25,9 @@ import {
 } from '../../lib/wallet/connectors';
 import { Spinner } from './spinner';
 import { AbstractConnector } from '@web3-react/abstract-connector';
+import { A, ConBtn, Div, H1, Icon } from './wallet.styles';
+import mask from './assets/metamask.svg'
+import { walletMeta } from './walletMeta';
 // import './wallet.scss';
 
 // import { METAMASK } from 'web3modal/dist/providers/injected';
@@ -32,7 +35,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector';
 // import ConnectToWallet from '../../ConnectToWallet/ConnectToWallet.js'
 
 enum ConnectorNames {
-	MetaMask = 'MetaMask',
+	MetaMask =  'MetaMask',
 	Network = 'Network',
 	WalletConnect = 'WalletConnect',
 	WalletLink = 'WalletLink',
@@ -243,10 +246,10 @@ export default function Wallet() {
 	}, [activatingConnector, connector]);
 
 	// handle logic to eagerly connect to the injected ethereum provider, if it exists and has granted access already
-	const triedEager = useEagerConnect();
+	// const triedEager = useEagerConnect();
 
 	// handle logic to connect in reaction to certain events on the injected ethereum provider, if it exists
-	useInactiveListener(!triedEager || !!activatingConnector);
+	// useInactiveListener(!triedEager || !!activatingConnector);
 
 	return (
 		<>
@@ -261,11 +264,12 @@ export default function Wallet() {
 				onOk={handleOk}
 				onCancel={handleCancel}
 			> */}
-			{Header()}
+			{/* {Header()} */}
+			{/* !triedEager || */}
 
 			<div className="wallet-container border-pink-glow">
 				<div className="title">
-					<h1 className="con- glow-text-white">Connect to a wallet</h1>
+					<H1 className="con- glow-text-white">Connect to a wallet</H1>
 				</div>{' '}
 				<hr />
 				<div className="walletButtonContainer">
@@ -274,11 +278,12 @@ export default function Wallet() {
 						const activating = currentConnector === activatingConnector;
 						const connected = currentConnector === connector;
 						const disabled =
-							!triedEager || !!activatingConnector || connected || !!error;
+							 !!activatingConnector || connected || !!error;
+							 const nameLookupKey = name.toLowerCase();
 						// console.log(name.toLowerCase() + '.png');
 						return (
 							<div className="btn-div" key={name}>
-								<button
+								<ConBtn
 									className="network-btns"
 									disabled={disabled}
 									onClick={() => {
@@ -293,6 +298,12 @@ export default function Wallet() {
 											style={{ height: '25%', marginLeft: '-1rem' }}
 										/>
 									)}
+									<Icon
+                    src={walletMeta[nameLookupKey]?.uri}
+                    alt=""
+                    role="presentation"
+                    className="mx-auto mb-2"
+                  />
 									<div className="name-con">{name}</div>
 									<div
 										style={{
@@ -300,14 +311,14 @@ export default function Wallet() {
 										}}
 										className="circle"
 									></div>
-								</button>
+								</ConBtn>
 							</div>
 						);
 					})}
 				</div>
 				{(active || error) && (
 					<div key="network-button" className="button-target">
-						<button
+						<ConBtn
 							className="network-d-btn"
 							style={{ border: 'none', background: 'transparent' }}
 							onClick={() => {
@@ -315,7 +326,7 @@ export default function Wallet() {
 							}}
 						>
 							Deactivate
-						</button>
+						</ConBtn>
 					</div>
 				)}
 				{!!error && <h4>{getErrorMessage(error)}</h4>}
@@ -380,15 +391,15 @@ export default function Wallet() {
 				)}
 				<hr style={{ marginTop: 18 }} />
 				<div className="new-ETH">
-					<div className="ETH"> New to Ethereum?</div>
-					<a
+					<Div className="ETH" color={"01ffa5"}> New to Ethereum?</Div>
+					<A
 						className="link"
 						href="https://ethereum.org/en/wallets/"
 						target="_blank"
 						rel='noreferrer'
 					>
 						Learn more about wallets
-					</a>
+					</A>
 				</div>
 			</div>
 			{/* </Modal> */}

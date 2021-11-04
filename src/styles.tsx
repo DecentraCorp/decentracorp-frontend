@@ -393,3 +393,93 @@ display:'flex',
 flexDirection:'row',
 
 }
+
+export const stake ={
+    display:'flex',
+    flexDirection:'column',
+    alignContent:'middle ',
+    overflow:'wrap',
+    padding:25,   
+    width:275,
+    height:325,
+
+    // width:'30vw',
+   // height:'37.5vw',
+    marginLeft:'auto',
+    marginRight:'90vw',
+    marginTop: '10vw',
+    // marginBottom:'4%',
+    borderRadius:'6px',
+    boxShadow:'0px 4px 6px 4px rgba(0,0,0,0.05)',
+    color:'white',
+    background:'rgba(99, 109, 108, 0.17)',
+
+    
+}
+
+export const stakeBox={
+    marginTop: '5vw',
+    marginLeft:'40vw',
+}
+
+export const createProposal ={
+    display:'flex',
+    flexDirection:'column',
+    alignContent:'center',
+    // overflow:'wrap',
+    padding:25,   
+    width:275,
+    height:325,
+   
+    // width:'30vw',
+   // height:'37.5vw',
+   marginTop: '10vw',
+    marginLeft:'38vw',
+    marginRight:'40vw',
+    borderRadius:'6px',
+    boxShadow:'0px 4px 6px 4px rgba(0,0,0,0.05)',
+    color:'white',
+    background:'rgba(99, 109, 108, 0.17)',
+}
+
+export const createProposalBox={
+    marginTop: '5vw',
+}
+
+export const proposalData ={
+    display:'flex',
+    flexDirection:'row',
+    alignContent:'center',
+    // overflow:'wrap',
+    padding:25,   
+    width:275,
+    height:325,
+   
+    // width:'30vw',
+   // height:'37.5vw',
+     marginTop: '10vw',
+    // marginLeft:'15vw',
+    // marginRight:'80vw',
+    borderRadius:'6px',
+    boxShadow:'0px 4px 6px 4px rgba(0,0,0,0.05)',
+    color:'white',
+    background:'rgba(99, 109, 108, 0.17)',
+}
+
+export const proposalBox={
+    marginTop: '5vw',
+}
+
+export const BOX= {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gap: '10px 2em'
+}
+
+export const dropdown= {
+
+}
+
+export const simpleDropDown= {
+
+}

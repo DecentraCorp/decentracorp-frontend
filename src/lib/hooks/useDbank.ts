@@ -15,7 +15,8 @@ export function UseDbank () {
 
     const _purchaseStock = async (
 		params: PurchaseStock,
-	): Promise<ethers.ContractTransaction> => {
+	) => {
+		console.log(params._amount, params._tokenType, 'line 19 useDbank Hook')
 
 		let tx: Maybe<ethers.ContractTransaction>;
 		try {
@@ -59,14 +60,14 @@ export function UseDbank () {
 	
 
     const _addNewCollateralType = async (
-		params: AddCollateral,
+		_collateral: any,
 	): Promise<ethers.ContractTransaction> => {
 
 		let tx: Maybe<ethers.ContractTransaction>;
 
 		try {
 			tx = await Dbank!.addNewCollateralType(
-				params._collateral,
+				_collateral,
 				
 			);
 		} catch (e: any) {
@@ -127,7 +128,7 @@ export function UseDbank () {
 
 
     const _calculateSale = (_stockAmount: any) => {
-        if(Dbank?.isJust()){
+        
             Dbank?.value.DecentraBank.calculateSale(
                 _stockAmount
             ).then(async (txr: any) => {
@@ -137,10 +138,12 @@ export function UseDbank () {
                     let _er = err
                     console.log(_er, 'Failed to withdraw')
                 })
-        }
+        
 
     }  
     
     
     return {_purchaseStock, _sellStock, _addNewCollateralType, _fundWithdrawl, _calculatePoolBal, _calculatePurchase, _calculateSale}
 }
+
+ 

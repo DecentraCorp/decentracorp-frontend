@@ -1,0 +1,30 @@
+.Simple {
+	width: 100%;
+	min-width: 352px;
+	background: var(--color-grey-darkest);
+	border: 1px solid var(--color-grey);
+	border-radius: var(--radius);
+}
+
+.Simple h4 {
+	font-size: 21px;
+	font-weight: 500;
+	padding: 16px;
+	margin: 0;
+	color: var(--text-primary);
+}
+
+.Simple ul {
+	width: 100%;
+	border-top: 1px solid var(--color-grey);
+	list-style: none;
+	padding: 8px 16px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 1024px) {
+	.Simple {
+		/* width: 320px; */
+		min-width: 320px;
+	}
+}

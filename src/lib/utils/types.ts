@@ -1,5 +1,6 @@
 import { Bytes } from "@ethersproject/bytes";
 
+//- Decentra Bank
 export interface PurchaseStock {
     _amount: any
     _tokenType: any
@@ -8,8 +9,7 @@ export interface PurchaseStock {
 export interface SellStock {
     _amount: any
 }
-
-export interface AddCollateral {
+ export interface AddCollateral {
     _collateral: string | any
 }
 
@@ -27,41 +27,28 @@ export interface CalculateSale {
     _stockAmount: any
 }
 
+//- Decentra Core
 export interface NewProposal {
-    _target: string;
-    _proposalHash: string;
-    _callData: Bytes;
+// _target: any
+_title: any
+_description: any
+_callData: any
 }
 
-export interface GetProposal {
-    _id: number;
+export interface Quorum {
+    _quorum: any
+}
+
+//- Decentra Score
+export interface StakeMember{
+    _stakeAmount: any
 }
 
 export interface Vote {
-    _proposalId: number;
-    _supportsProposal: boolean;
+    _proposalID: any,
+    _support: boolean
 }
 
-export interface StakeMembership {
-    _stakeAmount: any;
-}
 
-export interface IncreaseScore {
-    _member: any;
-    _factor: any;
-    _amount: any;
-}
-
-export interface CalculateVotingPower {
-    _member: string;
-}
-
-export interface StakeCheck {
-    _member: string;
-}
-
-export interface GetDScore {
-    _member: string;
-}
 
 export type Maybe<T> = T | undefined | null;
