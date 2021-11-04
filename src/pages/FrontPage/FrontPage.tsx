@@ -29,9 +29,16 @@ import {
   Span,
 } from './Style';
 import { FrntPageDesignPiece } from 'components/FrntPageDesignPiece/FrntPageDesignPiece';
+import { useMultiAuth } from '@ceramicstudio/multiauth';
+import { useEnvState, useLogin } from 'lib/ceramic/hooks';
+
 
 
 const FrontPage = () => {
+  const [authState] = useMultiAuth();
+  const { auth } = useEnvState();
+  const login = useLogin();
+
   return (
     <div>
       <Wrapper>
@@ -45,7 +52,11 @@ const FrontPage = () => {
               Corporation (DAC) where the <br/> CEO and Shareholders are the
               employees, managers and factory owners.
             </Text>
-            <RepoBtn><GHLogo src={GithubLogo} alt=''/><BtnText>Repo</BtnText></RepoBtn>
+            {auth.state === 'confirmed' ? null : 
+            // <RepoBtn><GHLogo src={GithubLogo} alt=''/><BtnText>Repo</BtnText></RepoBtn>
+            <RepoBtn onClick={()=> void login()}><BtnText>{auth.state === 'loading' ? 'loading' : 'login'}</BtnText></RepoBtn>
+
+  }
           </TextBox>
           <RightBox>
             <Gradient>

@@ -1,21 +1,12 @@
-const { ESLINT_MODES } = require('@craco/craco');
-const path = require('path');
-
 const webpack = require('webpack');
 
 module.exports = {
-  stats: {
-    errorDetails: true,
-  },
   webpack: {
     configure: {
       module: {
         rules: [
           {
             test: /\.m?js/,
-            exclude:[
-              path.resolve(__dirname, './node_modules')
-            ],
             resolve: {
               fullySpecified: false,
             },
@@ -31,11 +22,11 @@ module.exports = {
           https: require.resolve('https-browserify'),
           stream: require.resolve('stream-browserify'),
           util: require.resolve('util/'),
-          buffer: require.resolve('buffer/'),
           assert: require.resolve('assert/'),
+          buffer: require.resolve('buffer/'),
         },
       },
-      plugins: [],
+      plugins: [new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'] })],
     },
   },
 };
