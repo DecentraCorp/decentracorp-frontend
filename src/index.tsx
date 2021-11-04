@@ -2,15 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import IdxProvider from 'lib/context/idxContext';
 import GlobalStyle from 'theme/globalStyles';
+
+//This is for demo purposes only
+import { Provider as MultiauthProvider} from '@ceramicstudio/multiauth';
+import { Provider as StateProvider } from 'jotai';
+import { connectors } from '../src/lib/ceramic/auth';
 
 ReactDOM.render(
   <React.StrictMode>
-    <IdxProvider>
-      <GlobalStyle />
-      <App />
-    </IdxProvider>
+    <MultiauthProvider providers={[{ key: 'ethereum', connectors}]}>
+      <StateProvider>
+        <GlobalStyle />
+        <App />
+      </StateProvider>
+    </MultiauthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
