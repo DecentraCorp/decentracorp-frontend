@@ -90,6 +90,9 @@ export const SwapForm = () => {
       }
       }
 
+    const handle = async () => {
+
+    }
     const initialSelectedIndex = switchOptions.findIndex(({value}: any) => value === 'swap')
 
     const handleSwitchChange = (newValue: any) => {
@@ -129,7 +132,7 @@ export const SwapForm = () => {
                     <Input placeholder='Value' onChange={(e: React.FormEvent<HTMLInputElement>) => handleToChange(e)} />
                 </DropdownBox>
                 <AltP>1 DCS = X DAI</AltP>
-                <SwapBtn onClick={handleSwap}>Swap</SwapBtn>
+                <SwapBtn onClick={handle}>Swap</SwapBtn>
             </DropdownContainer>
         </Wrapper>
     )

@@ -31,8 +31,8 @@ export default function ActiveProposals(){
 
 return (
     <InfoBox>
-        <InfoHeader>Your DecentraDollar Balance</InfoHeader>
-        <InfoSecondary>{Number(balanceS).toLocaleString()}</InfoSecondary>
+        <InfoHeader>Your DecentraStock Balance</InfoHeader>
+        <InfoSecondary>{active ?  Number(balanceS).toLocaleString() : 'please connect wallet'}</InfoSecondary>
     </InfoBox>
 )
 }
