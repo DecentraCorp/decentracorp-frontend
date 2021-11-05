@@ -11,12 +11,12 @@ import { connectors } from '../src/lib/ceramic/auth';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MultiauthProvider providers={[{ key: 'ethereum', connectors}]}>
+    {/* <MultiauthProvider providers={[{ key: 'ethereum', connectors}]}> */}
       <StateProvider>
         <GlobalStyle />
         <App />
       </StateProvider>
-    </MultiauthProvider>
+    {/* </MultiauthProvider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

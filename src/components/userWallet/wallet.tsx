@@ -25,9 +25,7 @@ import {
 } from '../../lib/wallet/connectors';
 import { Spinner } from './spinner';
 import { AbstractConnector } from '@web3-react/abstract-connector';
-import { A, ConBtn, Div, H1, Icon } from './wallet.styles';
-import mask from './assets/metamask.svg'
-import { walletMeta } from './walletMeta';
+import { A, ConBtn, H1 } from './wallet.styles';
 // import './wallet.scss';
 
 // import { METAMASK } from 'web3modal/dist/providers/injected';
@@ -35,7 +33,7 @@ import { walletMeta } from './walletMeta';
 // import ConnectToWallet from '../../ConnectToWallet/ConnectToWallet.js'
 
 enum ConnectorNames {
-	MetaMask =  'MetaMask',
+	MetaMask = 'MetaMask',
 	Network = 'Network',
 	WalletConnect = 'WalletConnect',
 	WalletLink = 'WalletLink',
@@ -279,7 +277,6 @@ export default function Wallet() {
 						const connected = currentConnector === connector;
 						const disabled =
 							 !!activatingConnector || connected || !!error;
-							 const nameLookupKey = name.toLowerCase();
 						// console.log(name.toLowerCase() + '.png');
 						return (
 							<div className="btn-div" key={name}>
@@ -298,12 +295,6 @@ export default function Wallet() {
 											style={{ height: '25%', marginLeft: '-1rem' }}
 										/>
 									)}
-									<Icon
-                    src={walletMeta[nameLookupKey]?.uri}
-                    alt=""
-                    role="presentation"
-                    className="mx-auto mb-2"
-                  />
 									<div className="name-con">{name}</div>
 									<div
 										style={{
@@ -391,7 +382,7 @@ export default function Wallet() {
 				)}
 				<hr style={{ marginTop: 18 }} />
 				<div className="new-ETH">
-					<Div className="ETH" color={"01ffa5"}> New to Ethereum?</Div>
+					<div className="ETH" color={"01ffa5"}> New to Ethereum?</div>
 					<A
 						className="link"
 						href="https://ethereum.org/en/wallets/"
@@ -406,4 +397,4 @@ export default function Wallet() {
 	
 		</>
 	);
-}
+};
