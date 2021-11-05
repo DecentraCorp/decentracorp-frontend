@@ -5,7 +5,6 @@ import { Route,Switch, HashRouter} from 'react-router-dom'
 // - Component Imports
 import Bank from './pages/bank/bank'
 import Dao from './pages/Dao/Dao';
-import Homepage from './pages/homepage/homepage';
 import Membership from './pages/membership/Membership';
 import {NavBar} from '../src/components/NavBar/NavBar';
 import {MobileNavBar} from '../src/components/MobileNavBar/MobileNavBar';

@@ -1,5 +1,4 @@
 import { HashRouter, Switch, Route, NavLink } from 'react-router-dom';
-import Topbar from '../../pages/homepage/topbar';
 import {
   headerTextstyle,
   routerTextstyle,
@@ -33,7 +32,6 @@ export function Header() {
         DecentraCorp DAO
       </NavLink>
 
-      <Topbar />
     </nav>
   );
 }
