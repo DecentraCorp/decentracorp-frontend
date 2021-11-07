@@ -41,9 +41,9 @@ export function NavBar() {
         <Nav>DecentraCorp DAO</Nav>
       </NavLink>
       {/* <Wallet /> */}
-			{account ? <div id="account">{truncate(account)}</div> : null}
+			{/* {account ? <div id="account">{truncate(account)}</div> : null} */}
 			<WalletBtn onClick={onOpen}>
-				{active ? 'Connected' : 'Connect Wallet'}
+				{active && account ? truncate(account) : 'Connect Wallet'}
 			</WalletBtn>
       <Modal size={'sm'} styleConfig={styles}  isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

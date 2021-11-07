@@ -30,7 +30,7 @@ const switchOptions = [
         selectedBackgroundColor: '#01FFA5',
     },
     {
-        label: 'LIQUIDITY',
+        label: 'SELL',
         value: 'liquidity',
         selectedBackgroundColor: '#01FFA5',
     }
@@ -38,13 +38,10 @@ const switchOptions = [
 
 
 export const SwapForm = () => {
-    const [AmountToSell, setAmountToSell] = React.useState("")
-  const [balanceD, setBalanceD] = React.useState<number | undefined | any>()
-  const [balanceS, setBalanceS] = React.useState<number | undefined | any>()
+  const [AmountToSell, setAmountToSell] = React.useState("")
   const [calculatedPrice, setcalculatedPrice] = React.useState<any>()
-
   const context = useWeb3React<Web3Provider>();
-	const { account, active } = useWeb3React();
+  const { account, active } = useWeb3React();
 
   // contracts
   const dBank = UseDbank();
@@ -54,6 +51,7 @@ export const SwapForm = () => {
 
     const [fromValue, setFromValue] = useState<string>();
     const [toValue, setToValue] = useState<string>()
+    const [poolBalance, setPoolBalance] = useState<string>()
     const [currentFromCurrency, setCurrentFromCurrency] = useState<any>();
     const [currentToCurrency, setCurrentToCurrency] = useState<any>();
     const [selectedFunction, setSelectedFunction] = useState<string>();
@@ -64,10 +62,11 @@ export const SwapForm = () => {
     ];
     
 
-    const handleSwap = async () => {
-        if(!active){
+    const handleBank = async () => {
+        if(!active ){
           alert('please connect your wallet')
-        }else{
+        }else if(switchOptions.findIndex(({value}: any) => value === 'swap')){
+            console.log(switchOptions[0], 'line 69 purchase function firing')
          let tx = await dBank._purchaseStock({
           _amount: ethers.utils.parseUnits(AmountToSell, 'ether'),
           _tokenType: '0x0000000000000000000000000000000000000000'
@@ -75,22 +74,59 @@ export const SwapForm = () => {
             });
     
         return tx
+      } else{
+        console.log('line 78 sell function firing')
+        const tx = await dBank._sellStock({
+            _amount: ethers.utils.parseUnits(AmountToSell)
+          })
+      
+          return tx
       }
       } 
 
+      React.useEffect(() => {
+		if (!account) {
+			return;
+		}
+		const fetchTokenBalance = async () => {
+			const balance: any = dBank?._calculatePoolBal();
+            console.log('fires')
+			setPoolBalance(ethers.BigNumber.from(balance).toLocaleString());
+		};
+		fetchTokenBalance();
+	}, [dBank, account]);
+
+    React.useEffect(() => {
+		if (!account) {
+			return;
+		}
+		const fetchTokenBalance = async (price: any) => {
+			const balance: any = dBank?._calculatePurchase(price);
+            console.log('fires')
+			setcalculatedPrice(ethers.utils.formatUnits(price).toLocaleString());
+		};
+		fetchTokenBalance(calculatedPrice);
+	}, [dBank, account, calculatedPrice]);
+
+    console.log(calculatedPrice, 'line 41')
+    console.log(switchOptions[0], 'line 104')
       const handleSell = async () => {
         if(!active){
           alert('please connect your wallet')
-        }else{
+        }else if(switchOptions[0]){
+        
         const tx = await dBank._sellStock({
           _amount: ethers.utils.parseUnits(AmountToSell)
         })
     
         return tx
+      } else{
+
       }
       }
 
     const handle = async () => {
+
 
     }
     const initialSelectedIndex = switchOptions.findIndex(({value}: any) => value === 'swap')
@@ -129,10 +165,10 @@ export const SwapForm = () => {
                 <P>Swap to:</P>
                 <DropdownBox>
                     <DropdownMenu setCurrent={setCurrentToCurrency} options={options} />
-                    <Input placeholder='Value' onChange={(e: React.FormEvent<HTMLInputElement>) => handleToChange(e)} />
+                    <Input placeholder={calculatedPrice} onChange={(e: React.FormEvent<HTMLInputElement>) => handleToChange(e)} />
                 </DropdownBox>
                 <AltP>1 DCS = X DAI</AltP>
-                <SwapBtn onClick={handle}>Swap</SwapBtn>
+                <SwapBtn onClick={handleBank}>Swap</SwapBtn>
             </DropdownContainer>
         </Wrapper>
     )

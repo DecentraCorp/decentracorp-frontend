@@ -59,13 +59,14 @@ export const CloseBtn = styled.button`
     background-color: #01ffa5;
     /* border-radius: 6px; */
     width: 250px;
-    height: 26px;
+    height: 22px;
     font-family: Spartan;
     font-weight: 600;
     font-size: 18px;
     line-height: 20.16px;
     color: #2b3030;
     border: none;
-    margin-top: 1em;
+    margin-bottom: 20%;
     cursor: pointer;
+    border-radius: 2px;
 `;

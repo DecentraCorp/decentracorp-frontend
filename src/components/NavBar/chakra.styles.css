@@ -1,6 +1,7 @@
 .chakra-modal__content{
+   
     margin-top: 2%;
-    max-width:250px;
+    max-width: 660px;
     background-color: rgba(99,109,108,3);
     box-shadow: 0px 4px 6px 4px rgb(0 0 0 / 8%);
     border-radius: 8px;
@@ -10,7 +11,9 @@
  }
 
  .chakra-modal__content-container{
-    margin-left: 40%;
+    display: flex;
+    margin-top: 4%;
+    margin-left: 28%;
     z-index: 100;
     /* background-color: blue; */
     /* width: 100%; */

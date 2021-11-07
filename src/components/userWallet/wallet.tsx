@@ -25,7 +25,7 @@ import {
 } from '../../lib/wallet/connectors';
 import { Spinner } from './spinner';
 import { AbstractConnector } from '@web3-react/abstract-connector';
-import { A, ConBtn, Div, H1, Icon } from './wallet.styles';
+import { A, BoxContainer, ConBtn, Div, H1, Icon } from './wallet.styles';
 import mask from './assets/metamask.svg'
 import { walletMeta } from './walletMeta';
 // import './wallet.scss';
@@ -272,7 +272,7 @@ export default function Wallet() {
 					<H1 className="con- glow-text-white">Connect to a wallet</H1>
 				</div>{' '}
 				<hr />
-				<div className="walletButtonContainer">
+				<BoxContainer className="walletButtonContainer">
 					{(_.keys(connectorsByName) as ConnectorNames[]).map((name) => {
 						const currentConnector = connectorsByName[name];
 						const activating = currentConnector === activatingConnector;
@@ -291,6 +291,12 @@ export default function Wallet() {
 										activate(connectorsByName[name]);
 									}}
 								>
+											<Icon
+                    src={walletMeta[nameLookupKey]?.uri}
+                    alt=""
+                    role="presentation"
+                    className="mx-auto mb-2"
+                  />
 									{/* displays spinner while a wallet is clicked and being confirmed by the user */}
 									{activating && (
 										<Spinner
@@ -298,12 +304,6 @@ export default function Wallet() {
 											style={{ height: '25%', marginLeft: '-1rem' }}
 										/>
 									)}
-									<Icon
-                    src={walletMeta[nameLookupKey]?.uri}
-                    alt=""
-                    role="presentation"
-                    className="mx-auto mb-2"
-                  />
 									<div className="name-con">{name}</div>
 									<div
 										style={{
@@ -315,7 +315,7 @@ export default function Wallet() {
 							</div>
 						);
 					})}
-				</div>
+				</BoxContainer>
 				{(active || error) && (
 					<div key="network-button" className="button-target">
 						<ConBtn
