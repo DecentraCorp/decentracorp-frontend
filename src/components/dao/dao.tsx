@@ -1,7 +1,7 @@
 import React from 'react'
 import { daostyle, stake, createProposal, BOX, createProposalBox, stakeBox, proposalData, proposalBox } from '../../styles'
 import { ApolloQueryResult, gql, useLazyQuery, useQuery } from '@apollo/client';
-import { PROPOSAL_DATA } from '../../lib/queries/proposalQueries';
+// import { PROPOSAL_DATA } from '../../lib/queries/proposalQueries';
 import Modal from 'antd/lib/modal/Modal';
 
 import { UseDcore } from '../../lib/hooks/useDcore';
@@ -11,7 +11,7 @@ import { Web3Provider } from '@ethersproject/providers';
 import { useWeb3React } from '@web3-react/core';
 
 import { useMintDD } from 'lib/proposalTypes/proposalMintDD';
-import { useIpfsSummary } from 'lib/hooks/useIpfsSummary';
+import { UseIpfsSummary } from 'lib/hooks/UseIpfsSummary';
 
 import { Table, Tag, Space } from 'antd';
 import SimpleOptionDropdown from 'components/Dropdowns/SimpleOptionDropdown/SimpleOptionDropdown';
@@ -24,15 +24,15 @@ export default function Dao() {
 
 
   
-  const { loading, error, data } = useQuery(PROPOSAL_DATA);   
-   console.log(data, 'proposal data')
-   console.log(loading, 'line 10 dao')
+  // const { loading, error, data } = useQuery(PROPOSAL_DATA);   
+  //  console.log(data, 'proposal data')
+  //  console.log(loading, 'line 10 dao')
 
    const context = useWeb3React<Web3Provider>();
    const { account,active } = useWeb3React();
 
   //- Hooks
-  const _ipfs = useIpfsSummary()
+  const _ipfs = UseIpfsSummary()
   const dCore = UseDcore()
   const dScore = UseDscore()
   const pTypeMintDD = useMintDD();

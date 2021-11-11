@@ -32,8 +32,9 @@ function getLibrary(provider: any): Web3Provider {
 }
 
 // - Apollo Client 
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_SUBGRAPH_URL_1,
+export const client = new ApolloClient({
+  // uri: process.env.REACT_APP_SUBGRAPH_URL_1,
+  uri: 'https://api.spacex.land/graphql/',
   cache: new InMemoryCache(),
 });
 

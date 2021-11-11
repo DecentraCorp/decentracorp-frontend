@@ -37,6 +37,8 @@ const switchOptions = [
 ]
 
 
+
+
 export const SwapForm = () => {
   const [AmountToSell, setAmountToSell] = React.useState("")
   const [calculatedPrice, setcalculatedPrice] = React.useState<any>()
@@ -95,40 +97,21 @@ export const SwapForm = () => {
 		};
 		fetchTokenBalance();
 	}, [dBank, account]);
-
+ 
     React.useEffect(() => {
 		if (!account) {
 			return;
 		}
-		const fetchTokenBalance = async (price: any) => {
-			const balance: any = dBank?._calculatePurchase(price);
+		const fetchTokenBalance = async (e: any) => {
+			const balance: any = dBank?._calculatePurchase(e.target.value);
             console.log('fires')
-			setcalculatedPrice(ethers.utils.formatUnits(price).toLocaleString());
+			setcalculatedPrice(ethers.utils.formatUnits(e.target.value).toLocaleString());
+            console.log(calculatedPrice, 'inside the effect function')
 		};
 		fetchTokenBalance(calculatedPrice);
 	}, [dBank, account, calculatedPrice]);
 
-    console.log(calculatedPrice, 'line 41')
-    console.log(switchOptions[0], 'line 104')
-      const handleSell = async () => {
-        if(!active){
-          alert('please connect your wallet')
-        }else if(switchOptions[0]){
-        
-        const tx = await dBank._sellStock({
-          _amount: ethers.utils.parseUnits(AmountToSell)
-        })
-    
-        return tx
-      } else{
-
-      }
-      }
-
-    const handle = async () => {
-
-
-    }
+    console.log(calculatedPrice, 'outside the effect function')
     const initialSelectedIndex = switchOptions.findIndex(({value}: any) => value === 'swap')
 
     const handleSwitchChange = (newValue: any) => {

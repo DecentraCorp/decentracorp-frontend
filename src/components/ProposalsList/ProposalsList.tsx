@@ -1,3 +1,4 @@
+import { gql, useQuery } from '@apollo/client';
 import active from '../../assets/ActiveClock.svg';
 import {
     WhiteDisplay,
@@ -14,8 +15,12 @@ import {
 //Props Here
 //}
 
-
 export default function ProposalsList(){
+    // const { loading, error, data } = useQuery<RocketsResult>(ROCKETS);
+    // console.log(loading || !data ? loading : data.rockets.map((e) => {
+    //      return console.log(e, 'line 55')
+    // }))
+
 
 return (
     <>
